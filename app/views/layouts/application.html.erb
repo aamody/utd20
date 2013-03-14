@@ -9,10 +9,28 @@
 	<body>
 		<%= render 'layouts/header' %>
 		
+		<!-- alternate flash code
+		<div class="container flash">
+        <% flash.each do |name, msg| %>
+          <% if msg.is_a?(String) %>
+            <div class="alert alert-<%= name == :notice ? "success" : "error" %>">
+              <a class="close" data-dismiss="alert">&#215;</a>
+              <%= content_tag :div, msg, :id => "flash_#{name}" %>
+            </div>
+          <% end %>
+        <% end %>
+    </div>-->
+		
 		<div class="container">
+    
+    <!-- original flash code from Mattan-->
+			<% flash.each do |name, msg| %>
+				<%= content_tag(:div, msg, class: "alert alert-#{name}") %>
+			<% end %>
+
 			<%= yield %>
 			<%= render 'layouts/footer' %>
 		</div>
-
+		
 	</body>
 </html>
